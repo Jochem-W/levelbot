@@ -26,6 +26,9 @@ ENV NODE_ENV=production \
     COMMIT_HASH=$commit_hash
 WORKDIR /app
 
+# Install Chromium
+RUN apk add --no-cache chromium
+
 # Copy all files (including source :/)
 COPY --from=builder /app .
 
