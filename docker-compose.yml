@@ -1,0 +1,24 @@
+services:
+  db:
+    container_name: levelbot-db
+    image: postgres:16
+    env_file: ./.env.db
+    environment:
+      POSTGRES_USER: levelbot
+    volumes:
+      - ./persisted/db/data:/var/lib/postgresql/data
+    restart: unless-stopped
+  webapp:
+    container_name: levelbot-app
+    build: ./app
+    restart: unless-stopped
+  bot:
+    container_name: levelbot
+    build: ./bot
+    env_file: ./bot/.env
+    volumes:
+      - ./persisted/bot:/app/persisted/bot
+    restart: unless-stopped
+    depends_on:
+      - db
+      - webapp

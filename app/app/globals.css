@@ -1,0 +1,19 @@
+/**
+ * Licensed under AGPL 3.0 or newer. Copyright (C) 2024 Jochem W. <license (at) jochem (dot) cc>
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      @apply bg-black text-white;
+    }
+  }
+}
