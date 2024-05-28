@@ -1,6 +1,8 @@
 {
-  "name": "my-app",
+  "name": "levelbot-web",
   "version": "0.1.0",
+  "author": "Jochem-W",
+  "license": "AGPL-3.0-or-later",
   "private": true,
   "scripts": {
     "dev": "next dev",
