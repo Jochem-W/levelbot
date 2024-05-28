@@ -1,6 +1,7 @@
 # Set-up build image
 FROM node:22-alpine AS builder
-ENV NODE_ENV=development
+ENV NODE_ENV=development \
+    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true 
 
 WORKDIR /app
 
