@@ -23,7 +23,7 @@ import { and, asc, eq } from "drizzle-orm"
 import { userPositionFactory } from "../util/db.mjs"
 import { levelForTotalXp, totalXpForLevel, xpForLevelUp } from "../util/xp.mjs"
 
-const fetchCount = 1
+const fetchCount = 10
 
 function addLevel<T>(data: T & { xp: number }) {
   return { ...data, level: levelForTotalXp(data.xp) }
