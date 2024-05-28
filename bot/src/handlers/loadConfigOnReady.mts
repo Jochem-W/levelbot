@@ -7,6 +7,7 @@ import { Drizzle } from "../clients.mjs"
 import { handler } from "../models/handler.mjs"
 import { settingsTable } from "../schema.mjs"
 import { Snowflake } from "discord.js"
+import { updateFromCache } from "./voiceXp.mjs"
 
 export const XpConfigs = new Map<Snowflake, typeof settingsTable.$inferSelect>()
 
@@ -26,6 +27,10 @@ export const LoadConfigOnReady = handler({
       }
 
       XpConfigs.set(guildId, config)
+    }
+
+    for (const guild of client.guilds.cache.values()) {
+      await updateFromCache(guild)
     }
   },
 })

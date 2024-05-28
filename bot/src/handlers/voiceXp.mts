@@ -14,6 +14,26 @@ import { levelUpMessage } from "../messages/levelUp.mjs"
 
 const guilds = new Map<Snowflake, Map<Snowflake, NodeJS.Timeout | undefined>>()
 
+export async function updateFromCache(guild: Guild) {
+  let members = guilds.get(guild.id)
+  if (!members) {
+    members = new Map()
+    guilds.set(guild.id, members)
+  }
+
+  for (const state of guild.voiceStates.cache.values()) {
+    if (
+      !state.member ||
+      !state.channelId ||
+      state.channelId === guild.afkChannelId
+    ) {
+      continue
+    }
+
+    await setMember(members, { member: state.member })
+  }
+}
+
 export async function updateIntervals(guild: Guild) {
   const members = guilds.get(guild.id)
   if (!members) {
