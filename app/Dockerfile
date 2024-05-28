@@ -10,7 +10,7 @@ COPY ["pnpm-lock.yaml", "package.json", "./"]
 # Install build tools
 RUN apk add --no-cache alpine-sdk python3 && \
     npm install -g pnpm && \
-    pnpm install
+    NODE_ENV=development pnpm install
 
 # Copy all files to working directory
 COPY . .
