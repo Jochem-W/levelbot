@@ -24,7 +24,8 @@ RUN pnpm tsc && \
 FROM node:22-alpine
 ARG commit_hash
 ENV NODE_ENV=production \
-    COMMIT_HASH=$commit_hash
+    COMMIT_HASH=$commit_hash \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 WORKDIR /app
 
 # Install Chromium
